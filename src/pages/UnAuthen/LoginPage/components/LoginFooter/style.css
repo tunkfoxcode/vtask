@@ -1,7 +1,24 @@
-.footer-container {
-  height: 100px;
-  background-color: lightgray;
+.auth-footer {
   position: fixed;
   bottom: 0;
+  height: 90px;
   width: 100%;
+  background-color: #424242;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footer-text-intro {
+  font-size: 22px;
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.footer-phone {
+  font-size: 24px;
+  letter-spacing: 3px;
 }
