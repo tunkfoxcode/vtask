@@ -2,13 +2,29 @@ import './style.css'
 import loginLogo from '../../../../../asset/img/login.png'
 import TextInput from "../../../../../common/components/Form/TextInput";
 import Card from "../../../../../common/components/Card";
-import {useState} from "react";
 import authService from "../../../../../common/api/authSerivce";
 import loadingGif from '../../../../../asset/img/loading.gif'
 import {useFormik} from "formik";
+import {useState} from "react";
+import {object, string} from 'yup'
 
-function LoginForm({onLogin}){
+function LoginForm({onLogin}) {
   const [showLoading, setShowLoading] = useState(false);
+
+
+  readConsumeFile("consume.txt", function (data){
+    //Đọc file xong thì đi xử lý file
+    processData(data, function (dataProcessed){
+      // Xử lý xong thì lưu xuống ổ cứng
+      storeToHDD(dataProcessed, function (){
+        //Lưu xuống ổ cứng xong thì thông báo cho người dùng
+        notifyUser('Proccess consum file done!!!!')
+      })
+    })
+  })
+  console.log('Process done!!!!');
+
+
 
   const loginForm = useFormik({
     initialValues: {
@@ -26,11 +42,20 @@ function LoginForm({onLogin}){
         console.log('Login success with result: ', result)
         console.log('Đăng nhập thành công!!!!')
       })
-    }
+    },
+    validationSchema: object().shape({
+      username: string()
+      .min(2, 'Tên đăng nhập phải có ít nhất 2 ký tự')
+      .max(10, ' Tên đăng nhập không vượt quá 10 ký tự')
+      .required('Không dược để trống tên đăng nhập'),
+      password: string()
+      .min(6, 'Mât khẩu phải có ít nhất 6 ký tự')
+      .max(12, 'Mật khẩu không quá 12 ký tự')
+      .required('Không được để trống mật khẩu')
+    })
   })
 
   return (
-
       <div className={"login-form-container"}>
         <div className={"login-form"}>
           <Card>
@@ -43,18 +68,21 @@ function LoginForm({onLogin}){
                     value={loginForm.values.username}
                     type={"text"}
                     placeholder={"Tên đăng nhập"}
+                    error={loginForm.errors.username}
                 />
                 <TextInput
                     onChange={loginForm.handleChange}
-                    name ='password'
+                    name='password'
                     value={loginForm.values.password}
                     type={"password"}
                     placeholder={"Mật khẩu"}
+                    error={loginForm.errors.password}
                 />
                 <button type={"submit"}>Đăng nhập</button>
                 <div>
                   {
-                    showLoading && <img style={{marginTop: "20px"}} src={loadingGif} alt=""/>
+                      showLoading && <img style={{marginTop: "20px"}}
+                                          src={loadingGif} alt=""/>
                   }
                 </div>
               </form>
