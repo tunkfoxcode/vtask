@@ -4,12 +4,14 @@ import reportWebVitals from './reportWebVitals';
 import App from "./App";
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css'
+import ClassComponent from "./example/ClassComponent";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   // <React.StrictMode>
-    <App />
+  //   <App />
+    <ClassComponent name={"tunk"}/>
   // </React.StrictMode>
 );
 

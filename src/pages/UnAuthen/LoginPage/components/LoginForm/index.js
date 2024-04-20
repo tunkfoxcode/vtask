@@ -10,22 +10,6 @@ import {object, string} from 'yup'
 
 function LoginForm({onLogin}) {
   const [showLoading, setShowLoading] = useState(false);
-
-
-  readConsumeFile("consume.txt", function (data){
-    //Đọc file xong thì đi xử lý file
-    processData(data, function (dataProcessed){
-      // Xử lý xong thì lưu xuống ổ cứng
-      storeToHDD(dataProcessed, function (){
-        //Lưu xuống ổ cứng xong thì thông báo cho người dùng
-        notifyUser('Proccess consum file done!!!!')
-      })
-    })
-  })
-  console.log('Process done!!!!');
-
-
-
   const loginForm = useFormik({
     initialValues: {
       username: '',
@@ -41,6 +25,11 @@ function LoginForm({onLogin}) {
         setShowLoading(false)
         console.log('Login success with result: ', result)
         console.log('Đăng nhập thành công!!!!')
+      })
+      .catch(err => {
+        setShowLoading(false)
+        console.log('Login failed!!!!')
+        alert('Tài khoản hoặc mật khẩu không đúng, vui lòng thử đăng nhập lại!!!!');
       })
     },
     validationSchema: object().shape({
