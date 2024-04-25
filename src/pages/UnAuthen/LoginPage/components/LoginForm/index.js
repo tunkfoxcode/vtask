@@ -7,30 +7,44 @@ import loadingGif from '../../../../../asset/img/loading.gif'
 import {useFormik} from "formik";
 import {useState} from "react";
 import {object, string} from 'yup'
+import {useNavigate} from "react-router-dom";
 
 function LoginForm({onLogin}) {
   const [showLoading, setShowLoading] = useState(false);
+  const navigate = useNavigate();
+
+
   const loginForm = useFormik({
     initialValues: {
       username: '',
       password: ''
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const {username, password} = values;
       setShowLoading(true)
-      authService
-      .login(username, password)
-      .then(result => {
-        //When login return result
+
+      // authService
+      // .login(username, password)
+      // .then(result => {
+      //   //When login return result
+      //   setShowLoading(false)
+      //   console.log('Login success with result: ', result)
+      //   console.log('Đăng nhập thành công!!!!')
+      // })
+      // .catch(err => {
+      //   setShowLoading(false)
+      //   console.log('Login failed!!!!')
+      //   alert('Tài khoản hoặc mật khẩu không đúng, vui lòng thử đăng nhập lại!!!!');
+      // })
+
+      try {
+        const loginResponse = await authService.login(username, password);
         setShowLoading(false)
-        console.log('Login success with result: ', result)
-        console.log('Đăng nhập thành công!!!!')
-      })
-      .catch(err => {
+        console.log('Login success with result: ', loginResponse)
+        navigate('/')
+      } catch (err) {
         setShowLoading(false)
-        console.log('Login failed!!!!')
-        alert('Tài khoản hoặc mật khẩu không đúng, vui lòng thử đăng nhập lại!!!!');
-      })
+      }
     },
     validationSchema: object().shape({
       username: string()
