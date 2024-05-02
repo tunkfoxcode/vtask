@@ -3,6 +3,7 @@ import React from "react";
 import LoginPage from "../pages/UnAuthen/LoginPage";
 import HomePage from "../pages/App/HomePage";
 import BoardPage from "../pages/App/BoardPage";
+import RootLayout from "../layout/RootLayout";
 
 const router = createBrowserRouter([
   {
@@ -11,12 +12,18 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <HomePage />
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />
+      },
+      {
+        path: '/boards',
+        element: <BoardPage />
+      }
+    ]
   },
-  {
-    path: "/board",
-    element: <BoardPage />
-  }
 ]);
 
 const AppRouter = () => {

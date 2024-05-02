@@ -1,9 +1,10 @@
+import StarredBoardList from "./components/StarredBoardList";
+
 const HomePage = () => {
   return (
       <div>
-        <TopNav></TopNav>
-        <SideNav></SideNav>
         <h2>Home page</h2>
+        <StarredBoardList/>
       </div>
   )
 }
