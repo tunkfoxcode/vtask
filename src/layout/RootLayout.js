@@ -3,7 +3,8 @@ import {Outlet, useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
   faHouse,
-  faList
+  faList,
+    faRightToBracket
 } from '@fortawesome/free-solid-svg-icons'
 
 const RootLayout = () => {
@@ -15,6 +16,11 @@ const RootLayout = () => {
 
   const onBoardsMenuItemClicked = () => {
     nav("/boards")
+  }
+
+  const handleLogoutClicked = () => {
+    localStorage.removeItem("token");
+    nav("/login");
   }
 
   return (
@@ -38,6 +44,11 @@ const RootLayout = () => {
               <FontAwesomeIcon icon={faList} size={"lg"}
                                style={{marginRight: "10px"}}/>
               Danh sách workspace
+            </div>
+            <div className={"logout"} onClick={handleLogoutClicked}>
+              <FontAwesomeIcon icon={faRightToBracket} size={"lg"}
+                               style={{marginRight: "10px"}}/>
+              Đăng xuất
             </div>
           </div>
           <div className={"page-body"}>

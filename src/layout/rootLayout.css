@@ -5,6 +5,7 @@
 
 .page-container {
   height: 100%;
+  overflow: scroll;
 }
 
 .page-container-1 {
@@ -30,4 +31,20 @@
 
 .active {
   background-color: #6173fa;
+}
+
+.logout {
+  height: 100px;
+  width: 250px;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.page-body {
+  overflow: scroll;
 }
