@@ -4,8 +4,13 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
   faHouse,
   faList,
-    faRightToBracket
+  faRightToBracket,
+  faGear
 } from '@fortawesome/free-solid-svg-icons'
+import TopNav from "../common/components/TopNav";
+import MenuItem from "../common/components/MenuItem";
+import UserContextProvider
+  from "../common/context/UserContext/userContextProvider";
 
 const RootLayout = () => {
   const nav = useNavigate();
@@ -20,41 +25,66 @@ const RootLayout = () => {
 
   const handleLogoutClicked = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
     nav("/login");
   }
 
+  const handleAccountMenuItemClicked = () => {
+    nav("/account")
+  }
+
+  const menu = [
+    {
+      title: 'Trang chủ',
+      icon: faHouse,
+      path: '/'
+    },
+    {
+      title: 'Danh sách boards',
+      icon: faList,
+      path: '/boards'
+    },
+    {
+      title: 'Danh sách workspace',
+      icon: faList,
+      path: '/workspaces'
+    },
+    {
+      title: 'Tài khoản',
+      icon: faGear,
+      path: '/account'
+    },
+  ]
+
   return (
       <div className={"page-container"}>
-        <div className={"top-nav"}>
-
-        </div>
-        <div className={"page-container-1"}>
-          <div className={"side-nav"}>
-            <div className={"menu-item"} onClick={onHomePageClicked}>
-              <FontAwesomeIcon icon={faHouse} size={"lg"}
-                               style={{marginRight: "10px"}}/>
-              Trang chủ
+        <UserContextProvider>
+          <div className={"top-nav"}>
+            <TopNav/>
+          </div>
+          <div className={"page-container-1"}>
+            <div className={"side-nav"}>
+              {
+                menu.map(menuItem => {
+                  return <MenuItem
+                      key={menuItem.title}
+                      title={menuItem.title}
+                      icon={menuItem.icon}
+                      path={menuItem.path}
+                  />
+                })
+              }
+              <div className={"logout"} onClick={handleLogoutClicked}>
+                <FontAwesomeIcon icon={faRightToBracket} size={"lg"}
+                                 style={{marginRight: "10px"}}/>
+                Đăng xuất
+              </div>
             </div>
-            <div className={"menu-item active"} onClick={onBoardsMenuItemClicked}>
-              <FontAwesomeIcon icon={faList} size={"lg"}
-                               style={{marginRight: "10px"}}/>
-              Danh sách boards
-            </div>
-            <div className={"menu-item"}>
-              <FontAwesomeIcon icon={faList} size={"lg"}
-                               style={{marginRight: "10px"}}/>
-              Danh sách workspace
-            </div>
-            <div className={"logout"} onClick={handleLogoutClicked}>
-              <FontAwesomeIcon icon={faRightToBracket} size={"lg"}
-                               style={{marginRight: "10px"}}/>
-              Đăng xuất
+            <div className={"page-body"}>
+              <Outlet/>
             </div>
           </div>
-          <div className={"page-body"}>
-            <Outlet />
-          </div>
-        </div>
+        </UserContextProvider>
       </div>
   )
 }

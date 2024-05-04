@@ -4,6 +4,7 @@ import LoginPage from "../pages/UnAuthen/LoginPage";
 import HomePage from "../pages/App/HomePage";
 import BoardPage from "../pages/App/BoardPage";
 import RootLayout from "../layout/RootLayout";
+import AccountPage from "../pages/App/AccountPage";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/boards',
         element: <BoardPage />
+      },
+      {
+        path: '/account',
+        element: <AccountPage />
       }
     ]
   },

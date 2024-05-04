@@ -39,8 +39,10 @@ function LoginForm({onLogin}) {
 
       try {
         const loginResponse = await authService.login(username, password);
+        const data = loginResponse.data
         setShowLoading(false)
-        console.log('Login success with result: ', loginResponse)
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.username);
         navigate('/')
       } catch (err) {
         setShowLoading(false)

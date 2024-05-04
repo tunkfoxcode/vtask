@@ -1,11 +1,12 @@
 .top-nav {
   height: 80px;
-  background-color: #61dafb;
+  background-color: #54005c;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 .page-container {
   height: 100%;
-  overflow: scroll;
+  /*overflow: scroll;*/
 }
 
 .page-container-1 {
@@ -14,7 +15,7 @@
 }
 
 .side-nav {
-  width: 250px;
+  width: 260px;
   height: 100%;
   background-color: #0c005c;
   font-family: "Josefin Sans", sans-serif;
@@ -46,5 +47,8 @@
 
 
 .page-body {
+  width: 100%;
   overflow: scroll;
+  padding: 20px;
+  font-family: "Josefin Sans", sans-serif;
 }
