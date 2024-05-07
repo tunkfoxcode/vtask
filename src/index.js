@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -7,6 +7,8 @@ import AppRouter from "./router/AppRouter";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
 
 root.render(
   // <React.StrictMode>

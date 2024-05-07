@@ -2,11 +2,11 @@ import './style.css'
 
 const BoardItem = ({boardName, boardWorkspace, avatar}) => {
   return (
-      <div>
-        <h2>
-          {boardName}
-        </h2>
+      <div className={"board-item"}>
         <img src={avatar} alt=""/>
+        <div className={"board-title"}>
+          {boardName}
+        </div>
       </div>
   )
 }

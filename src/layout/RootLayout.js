@@ -11,9 +11,17 @@ import TopNav from "../common/components/TopNav";
 import MenuItem from "../common/components/MenuItem";
 import UserContextProvider
   from "../common/context/UserContext/userContextProvider";
+import {useEffect} from "react";
+import useToken from "../common/hook/useToken";
 
 const RootLayout = () => {
   const nav = useNavigate();
+
+  const token = useToken();
+
+  if((token === undefined || token === null)){
+    nav("/login")
+  }
 
   const onHomePageClicked = () => {
     nav("/");
