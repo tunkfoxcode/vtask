@@ -4,6 +4,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css'
 import AppRouter from "./router/AppRouter";
+import CountDownTimer from "./example/CountDownTimer";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

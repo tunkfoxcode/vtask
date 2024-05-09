@@ -1,20 +1,16 @@
-import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
-const useToken = () => {
-  const [token, setToken] = useState(null);
+const AuthRender = ({render}) => {
   const nav = useNavigate();
-
   useEffect(() => {
     const tokenFromLocalStorage = localStorage.getItem("token");
     if(tokenFromLocalStorage === undefined || tokenFromLocalStorage === null){
-      nav("/login");
-      return;
+      nav("/login")
     }
-    setToken(tokenFromLocalStorage)
   }, []);
 
-  return token;
+  return render();
 }
 
-export default useToken
+export default AuthRender

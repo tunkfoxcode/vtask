@@ -5,6 +5,10 @@ import HomePage from "../pages/App/HomePage";
 import BoardPage from "../pages/App/BoardPage";
 import RootLayout from "../layout/RootLayout";
 import AccountPage from "../pages/App/AccountPage";
+import withAuth from "../common/hoc/withAuth";
+import AuthRender from "../common/renderProps /AuthRender";
+
+// const RootLayoutWithAuth = withAuth(RootLayout);
 
 const router = createBrowserRouter([
   {
@@ -13,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <RootLayout />,
+    element: <AuthRender render={() => <RootLayout />} />,
     children: [
       {
         index: true,

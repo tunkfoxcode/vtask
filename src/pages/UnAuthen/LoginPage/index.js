@@ -7,11 +7,13 @@ import useToken from "../../../common/hook/useToken";
 
 function LoginPage() {
   const nav = useNavigate();
-  const token = useToken();
 
-  if(!(token === undefined || token === null)){
-    nav("/")
-  }
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if(tokenFromLocalStorage){
+      nav("/");
+    }
+  }, []);
 
   return (
       <div>

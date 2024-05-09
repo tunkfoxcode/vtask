@@ -33,9 +33,19 @@ const HomePage = () => {
       try {
         dispatch({type: 'CHANGE_LOADING', payload: true})
         const response = await boardService.getStarredBoardPaging(state.page, 2);
-        dispatch({type: 'CHANGE_LOADING', payload: false})
+        dispatch(
+            {
+              type: 'CHANGE_LOADING',
+              payload: false
+            }
+        )
         const {content} = response;
-        dispatch({type: 'FETCH_STARRED_BOARDS_SUCCESS', payload: content})
+        dispatch(
+            {
+              type: 'FETCH_STARRED_BOARDS_SUCCESS',
+              payload: content
+            }
+        )
       } catch (err) {
         alert('Đã xảy ra lỗi, vui lòng thử lại sau');
       }

@@ -64,7 +64,7 @@ const getStarredBoardPaging = (page, size) => {
         totalPage: 100,
         content: starredBoards.slice(page * size, page * size + size)
       })
-    }, 3000);
+    }, 300);
   });
 }
 

@@ -17,20 +17,6 @@ import useToken from "../common/hook/useToken";
 const RootLayout = () => {
   const nav = useNavigate();
 
-  const token = useToken();
-
-  if((token === undefined || token === null)){
-    nav("/login")
-  }
-
-  const onHomePageClicked = () => {
-    nav("/");
-  }
-
-  const onBoardsMenuItemClicked = () => {
-    nav("/boards")
-  }
-
   const handleLogoutClicked = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
