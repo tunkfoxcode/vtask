@@ -1,9 +1,9 @@
 import './style.css'
 
-const BoardItem = ({boardName, boardWorkspace, avatar}) => {
+const BoardItem = ({boardName, boardWorkspace, background}) => {
   return (
       <div className={"board-item"}>
-        <img src={avatar} alt=""/>
+        <img src={background} alt=""/>
         <div className={"board-title"}>
           {boardName}
         </div>

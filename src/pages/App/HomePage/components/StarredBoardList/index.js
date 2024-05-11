@@ -5,7 +5,7 @@ const StarredBoardList = ({boards}) => {
   return (
       <div className={"starred-board-list"}>
         {
-          boards.map(board => <BoardItem key={board.boardName} {...board} />)
+          boards && boards.map(board => <BoardItem key={board.boardName} {...board} />)
         }
       </div>
   )
